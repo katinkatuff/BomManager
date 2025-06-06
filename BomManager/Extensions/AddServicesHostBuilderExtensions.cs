@@ -10,8 +10,8 @@ public static class AddServicesHostBuilderExtensions {
     hostBuilder.ConfigureServices(services => {
       services.AddDbContext<ModuleContext>();
       services.AddSingleton<INavigationService, NavigationService>();
-      services.AddSingleton<IRepository<Module>, ModuleRepository>();
-      services.AddSingleton<IRepository<Part>, PartRepository>();
+      services.AddScoped<IRepository<Module>, ModuleRepository>();
+      services.AddScoped<IRepository<Part>, PartRepository>();
     });
 
     return hostBuilder;

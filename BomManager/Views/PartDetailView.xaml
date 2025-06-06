@@ -5,9 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BomManager.Views"
         mc:Ignorable="d"
-        Title="Part detail" Height="450" Width="800" WindowStartupLocation="CenterOwner">
-  <StackPanel>
-    <Label Content="Name" />
-    <TextBox Text="{Binding Part.Name}" />
-  </StackPanel>
+        Title="Part detail" Width="640"  SizeToContent="Height" WindowStartupLocation="CenterOwner" Background="LightGray">
+  <Border Margin="12">
+    <StackPanel>
+      <UniformGrid Columns="2">
+        <Label Content="Name" />
+        <TextBox Text="{Binding Part.Name}" />
+        <Label Content="Value" />
+        <TextBox Text="{Binding Part.Value}" />
+        <Label Content="URL" />
+        <TextBox Text="{Binding Part.Url}" />
+        <Label Content="Comment" />
+        <TextBox Text="{Binding Part.Comment}" />
+      </UniformGrid>
+      <WrapPanel HorizontalAlignment="Right">
+        <Button x:Name="okButton" Content="OK" Command="{Binding OkCommand}" CommandParameter="{Binding Part}" Padding="12 4" Click="Ok_Click" />
+        <Button Content="Cancel" Padding="12 4" Click="Cancel_Click" />
+      </WrapPanel>
+    </StackPanel>
+  </Border>
 </Window>

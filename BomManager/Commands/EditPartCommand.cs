@@ -4,22 +4,20 @@ using BomManager.ViewModels;
 
 namespace BomManager.Commands;
 
-public class AddPartCommand(IRepository<Part> partsRepository, PartsListViewModel partsListViewModel) : AsyncCommand {
+public class EditPartCommand(IRepository<Part> partsRepository, PartsListViewModel partsListViewModel) : AsyncCommand {
   public override async Task ExecuteAsync(object? parameter) {
     var partViewModel = parameter as PartViewModel;
-    ArgumentNullException.ThrowIfNull(nameof(partViewModel));
+    ArgumentNullException.ThrowIfNull(partViewModel, nameof(partViewModel));
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
     var part = new Part {
-      Id = Guid.NewGuid(),
+      Id = partViewModel.Id,
       Name = partViewModel.Name,
       Comment = partViewModel.Comment,
       Url = partViewModel.Url,
       Value = partViewModel.Value,
     };
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-    await partsRepository.AddAsync(part);
+    partsRepository.Update(part);
     await partsRepository.SaveAsync();
 
     partsListViewModel.Refresh();

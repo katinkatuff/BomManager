@@ -5,16 +5,30 @@ using System.Windows.Input;
 
 namespace BomManager.ViewModels;
 
-public class PartDetailViewModel : ViewModel {
-  public PartDetailViewModel(IRepository<Part> partsRepository) {
-    AddPartCommand = new AddPartCommand(partsRepository);
+public class PartDetailViewModel(IRepository<Part> partsRepository, PartsListViewModel partsListViewModel) : ViewModel {
+  public ICommand? OkCommand { get; private set; }
+
+  public void SetToAddCommand() {
+    OkCommand = new AddPartCommand(partsRepository, partsListViewModel);
   }
 
-  public ICommand AddPartCommand { get; }
-
+  public void SetToEditCommand() {
+    OkCommand = new EditPartCommand(partsRepository, partsListViewModel);
+  }
+  
   private PartViewModel part = new();
   public PartViewModel Part {
     get { return part; }
     set { part = value; OnPropertyChanged(nameof(Part)); }
+  }
+
+  private string okButtonText = string.Empty;
+
+  public string OkButtonText {
+    get { return okButtonText; }
+    set {
+      okButtonText = value;
+      OnPropertyChanged(nameof(OkButtonText));
+    }
   }
 }

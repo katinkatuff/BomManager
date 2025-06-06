@@ -44,7 +44,11 @@ public class PartRepository(ModuleContext context) : IDisposable, IRepository<Pa
   }
 
   public Part Update(Part item) {
-    context.Entry(item).State = EntityState.Modified;
+    var entity = context.Parts.Find(item.Id);
+    ArgumentNullException.ThrowIfNull(entity, nameof(item));
+    
+    context.Entry(entity).CurrentValues.SetValues(item);
+    
     return item;
   }
 }

@@ -8,13 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
   <Menu>
     <MenuItem Header="File">
-      <MenuItem Header="Save" Command="{Binding SaveCommand}"/>
       <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
-      <Separator />
-      <MenuItem Header="Add module" Command="{Binding AddModuleCommand}" />
-    </MenuItem>
-    <MenuItem Header="Parts">
-      <MenuItem Header="Add part" Command="{Binding AddPartCommand}" />
     </MenuItem>
   </Menu>
 </UserControl>

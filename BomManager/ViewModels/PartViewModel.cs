@@ -1,5 +1,7 @@
 ﻿namespace BomManager.ViewModels {
   public class PartViewModel : ViewModel {
+    public Guid Id { get; set; }
+
     private string name = string.Empty;
     public string Name {
       get { return name; }
@@ -33,15 +35,6 @@
       set {
         comment = value;
         OnPropertyChanged(nameof(Comment));
-      }
-    }
-
-    private int quantity;
-    public int Quantity {
-      get { return quantity; }
-      set {
-        quantity = value;
-        OnPropertyChanged(nameof(Quantity));
       }
     }
   }

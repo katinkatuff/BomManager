@@ -3,6 +3,7 @@ using System;
 using BomManager;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BomManager.Migrations
 {
     [DbContext(typeof(ModuleContext))]
-    partial class ModuleContextModelSnapshot : ModelSnapshot
+    [Migration("20250606075555_RemoveQuantityFromPart")]
+    partial class RemoveQuantityFromPart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");

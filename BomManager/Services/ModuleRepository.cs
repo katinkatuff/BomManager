@@ -26,7 +26,11 @@ public class ModuleRepository(ModuleContext context) : IDisposable, IRepository<
   }
 
   public Module Update(Module item) {
-    context.Entry(item).State = EntityState.Modified;
+    var entity = context.Modules.Find(item.Id);
+    ArgumentNullException.ThrowIfNull(entity, nameof(item));
+    
+    context.Entry(entity).CurrentValues.SetValues(item);
+    
     return item;
   }
 
