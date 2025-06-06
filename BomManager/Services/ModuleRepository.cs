@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BomManager.Services;
 
-public class ModuleRepository(ModuleContext context) : IDisposable, IModuleRepository {
-  public async Task<IEnumerable<Module>> GetModulesAsync() {
+public class ModuleRepository(ModuleContext context) : IDisposable, IRepository<Module> {
+  public async Task<IEnumerable<Module>> GetAsync() {
     return await context.Modules.ToListAsync();
   }
 
-  public async Task<Module> GetModuleByIdAsync(Guid id) {
+  public async Task<Module> GetByIdAsync(Guid id) {
     Module? module = await context.Modules.SingleOrDefaultAsync(module => module.Id == id);
     if (module == null) {
       throw new NullReferenceException(nameof(module));
@@ -16,18 +16,18 @@ public class ModuleRepository(ModuleContext context) : IDisposable, IModuleRepos
     return module;
   }
 
-  public async Task<Module> AddModuleAsync(Module module) {
-    await context.Modules.AddAsync(module);
-    return module;
+  public async Task<Module> AddAsync(Module item) {
+    await context.Modules.AddAsync(item);
+    return item;
   }
 
-  public void DeleteModule(Module module) {
-    context.Remove(module);
+  public void Delete(Module item) {
+    context.Modules.Remove(item);
   }
 
-  public Module UpdateModule(Module module) {
-    context.Entry(module).State = EntityState.Modified;
-    return module;
+  public Module Update(Module item) {
+    context.Entry(item).State = EntityState.Modified;
+    return item;
   }
 
   public async Task SaveAsync() {

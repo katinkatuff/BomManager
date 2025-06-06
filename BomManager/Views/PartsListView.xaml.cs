@@ -1,9 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using BomManager.ViewModels;
+using System.Windows.Controls;
 
 namespace BomManager.Views;
 
 public partial class PartsListView : UserControl {
-  public PartsListView() {
+  public PartsListView(PartsListViewModel partsListViewModel) {
     InitializeComponent();
+    DataContext = partsListViewModel;
   }
 }

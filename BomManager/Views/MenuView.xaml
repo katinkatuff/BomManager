@@ -12,6 +12,8 @@
       <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
       <Separator />
       <MenuItem Header="Add module" Command="{Binding AddModuleCommand}" />
+    </MenuItem>
+    <MenuItem Header="Parts">
       <MenuItem Header="Add part" Command="{Binding AddPartCommand}" />
     </MenuItem>
   </Menu>

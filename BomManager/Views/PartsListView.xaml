@@ -7,6 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <Grid>
-    <TextBlock Text="PartsListView" />
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <WrapPanel Orientation="Horizontal" Grid.Row="0">
+      <Button Content="Add" Command="{Binding AddPartCommand}" Padding="8 4" Margin="0 0 8 0"/>
+      <Button Content="Edit" Command="{Binding EditPartCommand}" Padding="8 4" Margin="0 0 8 0" />
+      <Button Content="Delete" Command="{Binding DeletePartCommand}" Padding="8 4" Margin="0 0 8 0"/>
+    </WrapPanel>
+    <DataGrid Grid.Row="1" ItemsSource="{Binding GetPartsTask.Result}" CanUserAddRows="False">
+      
+    </DataGrid>
   </Grid>
 </UserControl>

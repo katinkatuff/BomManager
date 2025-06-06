@@ -1,4 +1,5 @@
 ﻿using BomManager.Commands;
+using BomManager.Services;
 using System.Windows.Input;
 
 namespace BomManager.ViewModels; 
@@ -9,7 +10,8 @@ public class MenuViewModel : ViewModel {
   public ICommand AddModuleCommand { get; }
   public ICommand AddPartCommand { get; }
 
-  public MenuViewModel() {
+  public MenuViewModel(INavigationService navigationService) {
     ExitCommand = new ExitCommand();
+    AddPartCommand = new ShowPartDetailViewCommand(navigationService);
   }
 }

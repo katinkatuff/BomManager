@@ -1,4 +1,5 @@
-﻿using BomManager.Views;
+﻿using BomManager.Services;
+using BomManager.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -11,6 +12,7 @@ public static class AddViewsHostBuilderExtensions {
       services.AddSingleton<MenuView>();
       services.AddSingleton<ModulesListView>();
       services.AddSingleton<PartsListView>();
+      services.AddTransient<PartDetailView>();
     });
     return hostBuilder;
   }

@@ -10,6 +10,8 @@ public static class AddViewModelsHostExtensions {
       services.AddSingleton<MainViewModel>();
       services.AddSingleton<MenuViewModel>();
       services.AddSingleton<ModulesListViewModel>();
+      services.AddSingleton<PartsListViewModel>();
+      services.AddTransient<PartDetailViewModel>();
     });
 
     return hostBuilder;

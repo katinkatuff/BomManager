@@ -1,9 +1,12 @@
-﻿using BomManager.Services;
+﻿using BomManager.Models;
+using BomManager.Services;
 
 namespace BomManager.ViewModels; 
 
 public class ModulesListViewModel : ViewModel {
-  public ModulesListViewModel(IModuleRepository moduleRepository) {
-      
+  private readonly IRepository<Module> moduleRepository;
+
+  public ModulesListViewModel(IRepository<Module> moduleRepository) {
+    this.moduleRepository = moduleRepository;
   }
 }
